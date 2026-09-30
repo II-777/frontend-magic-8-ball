@@ -1,8 +1,12 @@
----
-title: README
-date: 2024-09-22 15:37
-author: II-777
-tags: React JavaScript Vite
----
+# Magic 8-Ball
 
-# Magic 8-Ball 
+A React page that shows a Magic 8-Ball and answers a question.
+
+**Stack:** React, Vite
+
+## Run
+
+```bash
+npm install
+npm run dev
+```
