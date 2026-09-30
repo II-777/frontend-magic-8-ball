@@ -4,6 +4,10 @@ A React page that shows a Magic 8-Ball and answers a question.
 
 **Stack:** React, Vite
 
+## Live
+
+https://8-ball-nine.vercel.app/
+
 ## Run
 
 ```bash
