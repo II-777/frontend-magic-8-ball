@@ -2,6 +2,8 @@
 
 A React page that shows a Magic 8-Ball and answers a question.
 
+![Preview](preview.jpg)
+
 **Stack:** React, Vite
 
 ## Live
