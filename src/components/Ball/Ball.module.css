@@ -1,0 +1,282 @@
+.stage {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.rig {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(520px, 86vw, 78vh);
+}
+
+.hover {
+  width: 100%;
+  animation: float 5.6s ease-in-out infinite;
+}
+
+.ball {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.ball:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.45);
+  outline-offset: 10px;
+  border-radius: 50%;
+}
+
+.shell,
+.shell * {
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.shell {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: relative;
+  filter: drop-shadow(0 28px 24px rgba(0, 0, 0, 0.45));
+}
+
+.window {
+  position: absolute;
+  width: 36.5%;
+  height: 36.5%;
+  left: 50%;
+  top: 50.2%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 36%, #1c2c66 0%, #0b142e 52%, #050814 100%);
+  box-shadow:
+    inset 0 12px 14px rgba(255, 255, 255, 0.05),
+    inset 0 -14px 16px rgba(0, 0, 0, 0.45);
+}
+
+.bubble {
+  position: absolute;
+  left: 58%;
+  bottom: 18%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.05) 70%);
+  opacity: 0;
+}
+
+.bubbleLate {
+  left: 34%;
+  width: 5px;
+  height: 5px;
+}
+
+.die {
+  position: absolute;
+  width: 78%;
+  aspect-ratio: 1.12 / 1;
+  left: 50%;
+  top: 47%;
+  transform: translate(-50%, -42%);
+  filter: drop-shadow(0 10px 6px rgba(0, 0, 0, 0.55));
+}
+
+.rim,
+.face {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+
+.rim {
+  background: linear-gradient(180deg, #f4f7ff 0%, #9eb0ff 100%);
+  transform: scale(1.07);
+  transform-origin: 50% 42%;
+}
+
+.face {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.32), transparent 36%),
+    linear-gradient(180deg, #5a74ff 0%, #2436d6 52%, #101a78 100%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 16%;
+}
+
+.answer {
+  width: 64%;
+  color: #fff;
+  text-align: center;
+  font-size: clamp(10px, 1.9vw, 13px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  white-space: pre-line;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
+}
+
+.yes {
+  font-size: clamp(16px, 3vw, 20px);
+}
+
+.glass {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(ellipse 34% 16% at 50% 12%, rgba(255, 255, 255, 0.18), transparent 72%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.shadow {
+  width: 54%;
+  height: 22px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.62), transparent 70%);
+  filter: blur(2px);
+  animation: shadow 5.6s ease-in-out infinite;
+}
+
+.shaking .hover {
+  animation-play-state: paused;
+}
+
+.shaking .ball {
+  animation: rock 1.7s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.shaking .bubble {
+  animation: rise 1.15s ease-out 0.15s both;
+}
+
+.shaking .bubbleLate {
+  animation-delay: 0.45s;
+}
+
+.shaking .die {
+  animation: tumble 1.7s cubic-bezier(0.45, 0.02, 0.25, 1) both;
+}
+
+.shaking .answer {
+  animation: conceal 1.7s linear both;
+}
+
+.shaking .shadow {
+  animation: shadowShake 1.7s ease-in-out both;
+}
+
+@keyframes float {
+  0%,
+  100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes shadow {
+  0%,
+  100% { transform: scaleX(1); opacity: 0.75; }
+  50% { transform: scaleX(0.84); opacity: 0.4; }
+}
+
+@keyframes rock {
+  0% { transform: rotate(0deg) translate3d(0, 0, 0); }
+  8% { transform: rotate(-11deg) translate3d(-10px, -14px, 0); }
+  16% { transform: rotate(9deg) translate3d(12px, 6px, 0); }
+  26% { transform: rotate(-7deg) translate3d(-8px, -8px, 0); }
+  38% { transform: rotate(5deg) translate3d(6px, 3px, 0); }
+  52% { transform: rotate(-3deg) translate3d(-3px, -3px, 0); }
+  68% { transform: rotate(1.6deg) translate3d(2px, 1px, 0); }
+  84% { transform: rotate(-0.6deg) translate3d(0, 0, 0); }
+  100% { transform: rotate(0deg) translate3d(0, 0, 0); }
+}
+
+@keyframes tumble {
+  0% {
+    transform: translate(-50%, -42%) rotate(0deg) scale(1);
+    filter: blur(0);
+    opacity: 1;
+  }
+  14% {
+    transform: translate(-50%, 8%) rotate(-24deg) scale(0.82);
+    filter: blur(1.5px);
+    opacity: 0.9;
+  }
+  34% {
+    transform: translate(-44%, 78%) rotate(110deg) scale(0.42);
+    filter: blur(6px);
+    opacity: 0.28;
+  }
+  54% {
+    transform: translate(-60%, 110%) rotate(230deg) scale(0.28);
+    filter: blur(8px);
+    opacity: 0.05;
+  }
+  74% {
+    transform: translate(-50%, 16%) rotate(318deg) scale(0.72);
+    filter: blur(3px);
+    opacity: 0.7;
+  }
+  88% {
+    transform: translate(-50%, -50%) rotate(356deg) scale(1.06);
+    filter: blur(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -42%) rotate(360deg) scale(1);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes conceal {
+  0%,
+  76% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes rise {
+  0% { transform: translate(0, 8px) scale(0.4); opacity: 0; }
+  20% { opacity: 0.8; }
+  100% { transform: translate(-8px, -46px) scale(1); opacity: 0; }
+}
+
+@keyframes shadowShake {
+  0%,
+  100% { transform: scaleX(1); opacity: 0.7; }
+  12% { transform: scaleX(1.12) translateX(-6px); opacity: 0.85; }
+  28% { transform: scaleX(0.9) translateX(8px); opacity: 0.55; }
+  48% { transform: scaleX(1.05) translateX(-3px); opacity: 0.7; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hover,
+  .shadow,
+  .shaking .ball,
+  .shaking .bubble,
+  .shaking .die,
+  .shaking .answer,
+  .shaking .shadow {
+    animation: none;
+  }
+}
